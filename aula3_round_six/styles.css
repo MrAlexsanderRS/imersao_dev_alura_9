@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+      text-align: center;
+      background: url("https://cdn.dribbble.com/userupload/26906814/file/original-ddc1de408d4289771f9be232567068de.gif") no-repeat center center fixed;
+      background-size: cover; /* Faz a imagem cobrir todo o fundo */
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .initial-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .logo {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+  }
+  
+  .container {
+      margin: 20px auto;
+      padding: 20px;
+    
+  }
+  
+  button {
+      font-family: "Exo 2", sans-serif;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #1a2a6c;
+      border: 3px solid #000000;
+      border-radius: 0 10px 0 10px;
+      outline: none;
+      width: 150px;
+      box-shadow: inset 0 0 0 2px #3b5998, 0 4px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      transition: background-color 0.3s, transform 0.1s;
+  }
+  
+  button:hover {
+      background-color: #e84118;
+      transform: scale(1.05);
+  }
+  
+  .game-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      position: relative;
+  }
+  
+  .tabuleiro-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      width: 250px;
+      position: relative; /* Para posicionar as linhas */
+      background-color: #222;
+      border: 3px solid #000000;
+      border-radius: 0 10px 0 10px;
+      box-shadow: inset 0 0 0 2px #3b5998, 0 4px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+  }
+  
+  .chegada, .partida {
+      background-color: #666;
+      color: #fff;
+      font-family: "Exo 2", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 12px;
+      text-align: center;
+      margin: 0; /* Removido o margin para alinhar com o tabuleiro */
+      border: 3px solid #000000;
+      width: 250px; /* Mesma largura do tabuleiro */
+      box-shadow: inset 0 0 0 2px #3b5998, 0 4px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 0 10px 0 10px;
+      position: relative; /* Para alinhar as linhas */
+      z-index: 1; /* Para ficar acima das linhas */
+  }
+  
+  .chegada {
+      border-bottom: none; /* Remove a borda inferior para a linha conectar diretamente */
+  }
+  
+  .partida {
+      border-top: none; /* Remove a borda superior para a linha conectar diretamente */
+  }
+  
+  /* Linhas verticais que conectam os pisos */
+  .tabuleiro-container::before,
+  .tabuleiro-container::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background-color: #3b5998; /* Cor da linha (azul escura, igual à sombra interna) */
+      z-index: 0; /* Fica atrás dos pisos e das seções */
+  }
+  
+  .tabuleiro-container::before {
+      left: 45px; /* Alinha com o centro do piso da esquerda */
+      top: 0; /* Começa no topo do tabuleiro-container */
+      height: calc(100% - 38px); /* Termina na borda inferior da "Chegada" (altura da Chegada é 38px) */
+  }
+  
+  .tabuleiro-container::after {
+      right: 45px; /* Alinha com o centro do piso da direita */
+      top: 0;
+      height: calc(100% - 38px); /* Termina na borda inferior da "Chegada" */
+  }
+  
+  .tabuleiro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin: 0; /* Remove margens para alinhar com as linhas */
+      position: relative;
+      z-index: 1; /* Fica acima das linhas */
+  }
+  
+  .linha {
+      position: relative;
+      width: 250px;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .piso {
+      width: 80px;
+      height: 80px;
+      background-color: #ccc;
+      border: 3px solid #000000;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.5s ease;
+      position: absolute;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .piso[data-lado="esquerda"] {
+      left: 10px;
+  }
+  
+  .piso[data-lado="direita"] {
+      right: 10px;
+  }
+  
+  .piso:hover {
+      background-color: #bbb;
+      transform: scale(1.05);
+  }
+  
+  .piso.desaparecer {
+      opacity: 0;
+  }
+  
+  .mensagem-jogo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #ff4757;
+      font-family: "Exo 2", sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 20px 40px;
+      border-radius: 10px;
+      border: 2px solid #ff4757;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  footer {
+      margin-top: 50px;
+      padding: 10px;
+      background-color: #222;
+      color: white;
+      font-family: "Exo 2", sans-serif;
+  }

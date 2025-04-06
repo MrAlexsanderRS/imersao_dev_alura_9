@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round 6 - Jogo dos Pisos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="initial-screen">
+        <img src="https://i.postimg.cc/GpCxYmvc/title.png" alt="Logo" class="logo">
+        <div class="container">
+            <div class="content">
+                <h2>Pra ganhar, é preciso coragem!</h2>
+                <p>Até mesmo para pisar em um chão feito de vidro</p>
+                <button onclick="iniciarJogo()">Bora jogar!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-screen" style="display: none;">
+        <p>Tempo restante: <span class="cronometro">5:00</span></p>
+        <div class="tabuleiro-container">
+            <div class="chegada">Inicio</div>
+            <div class="tabuleiro"></div>
+            <div class="partida">Saida</div>
+        </div>
+        <div class="mensagem-jogo" style="display: none;"></div>
+    </div>
+    
+    <footer style="display: none;">Alura - Imersão DEV - 2025</footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

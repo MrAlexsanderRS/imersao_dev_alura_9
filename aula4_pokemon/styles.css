@@ -1,0 +1,654 @@
+/* Reset e configurações gerais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Silkscreen', cursive, sans-serif;
+    background-color: #1a1a2e;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #f8f8f8;
+    image-rendering: pixelated;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #2c3e50 0%, #1a1a2e 100%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Telas do jogo */
+.screen {
+    background-color: #16213e;
+    border: 6px solid #0f3460;
+    border-radius: 8px;
+    padding: 25px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 
+        0 0 0 4px #2c3e50,
+        0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f1c40f, #e74c3c, #9b59b6, #3498db, #2ecc71);
+}
+
+/* Tipografia */
+h1, h2 {
+    color: #f1c40f;
+    text-shadow: 3px 3px 0 #e74c3c;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-top: 10px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 5px;
+}
+
+/* Botões */
+button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 10px 5px;
+    font-family: 'Silkscreen', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 3px solid #c0392b;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 #7f8c8d;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+button:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #7f8c8d;
+}
+
+button:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
+
+button:disabled {
+    background-color: #95a5a6;
+    border-color: #7f8c8d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Grid de seleção de Pokémon */
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.pokemon-card {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border: 4px solid #95a5a6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pokemon-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(255,255,255,0) 50%);
+    z-index: 0;
+}
+
+.pokemon-card:hover {
+    background-color: #d5dbdb;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.pokemon-card.selected {
+    background-color: #f1c40f;
+    border-color: #f39c12;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+/* Informações do Pokémon */
+.pokemon-name {
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 5px 0;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.pokemon-type {
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 8px auto;
+    font-size: 0.7rem;
+    border: 2px solid rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+.pokemon-stats {
+    font-size: 0.7rem;
+    color: #7f8c8d;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    text-align: left;
+}
+
+.pokemon-stats span {
+    display: block;
+}
+
+/* Container do time selecionado */
+.selected-team {
+    margin: 25px 0;
+    min-height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-slots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Quadrados de seleção */
+.slot {
+    width: 120px;
+    height: 120px;
+    border: 4px dashed #95a5a6;
+    background-color: rgba(236, 240, 241, 0.1);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Efeito quando há um Pokémon selecionado no slot */
+.slot.has-pokemon {
+    border-style: solid;
+    background-color: rgba(236, 240, 241, 0.2);
+    border-color: #f1c40f;
+}
+
+/* Nome do Pokémon no slot */
+.slot .pokemon-name {
+    font-size: 0.8rem;
+    color: #ecf0f1;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 12px;
+    width: calc(100% - 16px);
+    text-align: center;
+    position: absolute;
+    top: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Silkscreen', cursive;
+}
+
+/* Tipo do Pokémon no slot */
+.slot .pokemon-type {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    margin: 0;
+    position: absolute;
+    bottom: 8px;
+    width: calc(100% - 16px);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Ícone do Pokémon (pode ser substituído por imagem) */
+.slot .pokemon-icon {
+    width: 60px;
+    height: 60px;
+    margin: 5px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Efeitos de hover */
+.slot:hover {
+    background-color: rgba(236, 240, 241, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Slot vazio - estilo adicional */
+.slot.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot.empty::after {
+    content: "+";
+    font-size: 2rem;
+    color: #95a5a6;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .empty-slots {
+        gap: 15px;
+    }
+    
+    .slot {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .slot .pokemon-name {
+        font-size: 0.7rem;
+    }
+    
+    .slot .pokemon-type {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .empty-slots {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .slot {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Campo de batalha */
+.battle-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    min-height: 280px;
+    position: relative;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="%2334495e" stroke-width="2" stroke-dasharray="5,5"/></svg>') center/contain no-repeat;
+}
+
+.trainer {
+    width: 45%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.pokemon-display {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border: 6px solid #95a5a6;
+    border-radius: 10px;
+    color: #2c3e50;
+    text-align: center;
+    min-width: 180px;
+    max-width: 220px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.pokemon-display::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid rgba(149, 165, 166, 0.3);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.hp-bar {
+    height: 12px;
+    background-color: #95a5a6;
+    margin: 15px auto;
+    position: relative;
+    width: 90%;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    width: 100%;
+    transition: width 0.5s ease;
+    border-radius: 6px;
+}
+
+.hp-text {
+    position: absolute;
+    right: 5px;
+    top: -18px;
+    font-size: 0.7rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Log de batalha */
+.battle-log {
+    height: 120px;
+    overflow-y: auto;
+    background-color: rgba(44, 62, 80, 0.8);
+    border: 4px solid #34495e;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 20px auto;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    line-height: 1.4;
+}
+
+.battle-log div {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #34495e;
+}
+
+/* Ações de batalha */
+.battle-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 25px auto 15px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.battle-actions button {
+    padding: 12px;
+    font-size: 0.8rem;
+    margin: 5px;
+    width: 160px;
+    text-align: center;
+    flex: 1 1 160px;
+    max-width: 180px;
+}
+
+/* Status dos times */
+.team-status {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+    background-color: rgba(44, 62, 80, 0.6);
+    border-radius: 8px;
+}
+
+.player-team, .enemy-team {
+    display: flex;
+    gap: 8px;
+}
+
+.team-pokemon {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #95a5a6;
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: #2c3e50;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.team-pokemon.fainted {
+    opacity: 0.4;
+    background-color: #bdc3c7;
+    transform: scale(0.9);
+}
+
+/* Cores para tipos Pokémon */
+.Fogo { background-color: #e74c3c; border-color: #c0392b; }
+.Água { background-color: #3498db; border-color: #2980b9; }
+.Planta { background-color: #2ecc71; border-color: #27ae60; }
+.Elétrico { background-color: #f1c40f; border-color: #f39c12; color: #2c3e50; }
+.Psíquico { background-color: #9b59b6; border-color: #8e44ad; }
+.Lutador { background-color: #d35400; border-color: #e67e22; }
+.Inseto { background-color: #16a085; border-color: #1abc9c; }
+.Venenoso { background-color: #8e44ad; border-color: #9b59b6; }
+.Terra { background-color: #d35400; border-color: #e67e22; }
+.Pedra { background-color: #95a5a6; border-color: #7f8c8d; }
+.Voador { background-color: #3498db; border-color: #2980b9; }
+.Gelo { background-color: #3498db; border-color: #2980b9; }
+.Fantasma { background-color: #8e44ad; border-color: #9b59b6; }
+.Dragão { background-color: #e74c3c; border-color: #c0392b; }
+.Normal { background-color: #95a5a6; border-color: #7f8c8d; }
+
+/* Animações */
+@keyframes attack {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(10px, -5px); }
+    40% { transform: translate(-10px, 5px); }
+    60% { transform: translate(10px, -5px); }
+    80% { transform: translate(-10px, 5px); }
+    100% { transform: translate(0, 0); }
+}
+
+.attacking {
+    animation: attack 0.4s linear;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-8px); }
+    80% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+.shaking {
+    animation: shake 0.4s linear;
+}
+
+@keyframes heal {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.healing {
+    animation: heal 0.6s ease;
+}
+
+.critical {
+    color: #e74c3c;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+}
+
+/* Efeitos de texto */
+.text-effect {
+    position: relative;
+    display: inline-block;
+}
+
+.text-effect::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.text-effect:hover::after {
+    transform: scaleX(1);
+}
+
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(44, 62, 80, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f1c40f;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f39c12;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    
+    .battle-field {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .trainer {
+        width: 100%;
+    }
+    
+    .battle-actions button {
+        width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    .pokemon-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .empty-slots {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .battle-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .battle-actions button {
+        width: 100%;
+        max-width: 100%;
+    }
+}

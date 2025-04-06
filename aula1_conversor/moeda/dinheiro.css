@@ -1,0 +1,80 @@
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  position: relative;
+  }
+  
+  .container {
+  background: url("https://i.postimg.cc/MHkSqBvk/download-1.jpg" ) no-repeat center center/cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 8px;
+  }
+  
+  .content h2 {
+  margin-bottom: 20px;
+  }
+  
+  /* Primeiro btotão ao lado esquerdo hehehe */
+  .input-box {
+  padding: 10px;
+  font-family: 'Press Start 2P', cursive;
+  margin-right: 10px;
+    
+  font-size: 14px;
+  color: #eead2d; /* Texto branco */
+  background-color: #1a2a6c;
+  border: 3px solid #000000; 
+  border-radius: 0 10px 0 10px;
+  outline: none; 
+  width: 150px; 
+  box-shadow: inset 0 10 0 2px #3b5998; 
+          }
+  .input-box:placeholder {
+  color: #b0c4de; 
+  opacity: 0.8;
+  }
+  
+  
+  /* Segundo botão ao lado Direito */
+  .button {
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive; 
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase; 
+  color: #ffffff; 
+  background-color: #1a2a6c; 
+  border: 3px solid #000000; 
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: inset 0 0 0 2px #3b5998; 
+  cursor: pointer;
+  }
+  
+  .button:hover {
+  background-color: #3b5998; 
+  }
+  button:active {
+  background-color: #eead2d;
+  box-shadow: inset 0 0 0 1px #eead2d;
+    color: #eead2d;
+  }
+  
+  footer {
+  text-align: center;
+  padding: 10px;
+  }
+  
+  
+  

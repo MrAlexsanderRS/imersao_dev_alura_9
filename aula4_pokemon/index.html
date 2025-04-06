@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Pokémon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="screen" id="startScreen">
+        <h1>POKÉMON BATTLE</h1>
+        <button id="startButton">VAMOS JOGAR!</button>
+    </div>
+
+    <div class="screen" id="selectionScreen" style="display:none;">
+        <h2>ESCOLHA SEUS 3 POKÉMONS</h2>
+        <div class="pokemon-grid" id="pokemonGrid"></div>
+        <div class="selected-team" id="selectedTeam">
+            <div class="empty-slots">
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+            </div>
+        </div>
+        <button id="battleButton" disabled>INICIAR BATALHA</button>
+    </div>
+
+    <div class="screen" id="battleScreen" style="display:none;">
+        <div class="battle-field">
+            <div class="trainer" id="enemyTrainer">
+                <div class="pokemon-display" id="enemyPokemon"></div>
+            </div>
+            <div class="battle-info">
+                <div class="battle-log" id="battleLog"></div>
+                <div class="battle-actions" id="battleActions"></div>
+            </div>
+            <div class="trainer" id="playerTrainer">
+                <div class="pokemon-display" id="playerPokemon"></div>
+            </div>
+        </div>
+        <div class="team-status">
+            <div class="player-team" id="playerTeamStatus"></div>
+            <div class="enemy-team" id="enemyTeamStatus"></div>
+        </div>
+        <button id="newBattleButton">NOVA BATALHA</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

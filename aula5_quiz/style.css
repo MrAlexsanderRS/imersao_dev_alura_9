@@ -1,0 +1,173 @@
+/* Fontes e reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(33, 150, 243, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(233, 30, 99, 0.15) 0%, transparent 25%),
+    linear-gradient(to bottom, #121212, #000000);
+  background-attachment: fixed;
+}
+
+/* Container principal */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.header h1 {
+  color: #00bcd4;
+  font-size: 2.8em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header h2 {
+  color: #9c27b0;
+  font-size: 1.3em;
+  opacity: 0.9;
+}
+
+/* Conteúdo do quiz */
+.conteudo, .fim {
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  margin-bottom: 30px;
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Progresso */
+.progresso {
+  text-align: right;
+  color: #7e57c2;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Pergunta */
+.pergunta {
+  font-size: 1.6em;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Respostas */
+.respostas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.botao-resposta {
+  padding: 16px 25px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: #f8f8f8;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: left;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.botao-resposta:hover {
+  background-color: rgba(70, 70, 70, 0.9);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.botao-resposta:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+}
+
+.botao-resposta:hover:before {
+  left: 100%;
+}
+
+/* Estados das respostas */
+.correta {
+  background-color: rgba(46, 125, 50, 0.9) !important;
+  border-color: #2e7d32 !important;
+  box-shadow: 0 0 20px rgba(46, 125, 50, 0.6) !important;
+  animation: pulseCorrect 0.5s;
+}
+
+.incorreta {
+  background-color: rgba(198, 40, 40, 0.9) !important;
+  border-color: #c62828 !important;
+  box-shadow: 0 0 20px rgba(198, 40, 40, 0.6) !important;
+  animation: pulseIncorrect 0.5s;
+}
+
+/* Tela final */
+.fim {
+  display: none;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.fim span {
+  font-size: 1.6em;
+  color: #f8f8f8;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.fim .explicacoes {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 0.9em;
+  opacity: 0; 
+}
